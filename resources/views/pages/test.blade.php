@@ -1,15 +1,9 @@
 @extends ('layouts.master')
 
-@section('title')
-
-    <h1>Dashboard <small>Test &amp; 1 </small></h1>
-
-@endsection
+@section('title', 'Test 1')
 
 @section('content')
-
     <p>Hello test</p>
-
 @endsection
 
 

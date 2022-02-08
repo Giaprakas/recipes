@@ -2,12 +2,12 @@
 
 @section('title')
 
-    <h1>Dashboard <small>Test &amp; 2 </small></h1>
+    Test 2
 
 @endsection
 
 @section('content')
 
-<p>Hello test 2</p>
+    <p>Hello test 2</p>
 
 @endsection
