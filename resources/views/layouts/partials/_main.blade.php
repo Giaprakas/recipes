@@ -7,7 +7,7 @@
                 <ol class="breadcrumb">
                     <li>
                         <i class="clip-home-3"></i>
-                        <a href="#">Home
+                        <a href="/">Home
                         </a>
                     </li>
                     <li class="active">

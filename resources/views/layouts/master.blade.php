@@ -28,8 +28,7 @@
         <!-- end: MAIN CSS --> 
     </head>
     
-    <body class="page-full-width">
-       
+    <body class="page-full-width">  
         <header>
             @include('layouts.partials._header')
         </header>

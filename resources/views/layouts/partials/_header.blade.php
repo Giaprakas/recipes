@@ -374,26 +374,26 @@
     
 <!--     
  ///////////////////////////////////////////////////////////////////////////////////////    
- ///////////////////////////// HORIZONTAL MENU /////////////////////////////////////////
+ ////////////////////// start: HORIZONTAL MENU /////////////////////////////////////////
  ///////////////////////////////////////////////////////////////////////////////////////
  -->
 
     <!-- start: HORIZONTAL MENU -->
     <div class="horizontal-menu navbar-collapse collapse">
-        <ul class="nav navbar-nav">
-            <li>
-                <a href="index.html">Dashboard</a>
+        <ul class="nav navbar-nav"> 
+        <li class="active">
+                <a href="/">Home</a>
             </li>
-            <li class="active">
-                <a href="javascript:void(0)" class="dropdown-toggle" data-close-others="true" data-hover="dropdown" data-toggle="dropdown">
-                    <span class="selected"></span> Layouts <i class="fa fa-angle-down"></i>
+            <li>
+                <a href="/recipes" class="dropdown-toggle" data-close-others="true" data-hover="dropdown" data-toggle="dropdown">
+                    <span class="selected"></span> Recipes <i class="fa fa-angle-down"></i>
                 </a>
                 <ul class="dropdown-menu">
                     <li class="active">
-                        <a href="javascript:void(0)">Horizontal Menu</a>
+                        <a href="javascript:void(0)">Christmas menu</a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)">Sidebar Closed</a>
+                        <a href="javascript:void(0)">Salads</a>
                     </li>
                     <li>
                         <a href="javascript:void(0)">Sidebar Fixed Page</a>
@@ -462,11 +462,11 @@
                 </ul>
             </li>
             <li>
-                <a href="">UI Lab</a>
+                <a href="\example">example menu</a>
             </li>
             <li>
                 <a href="" class="dropdown-toggle" data-close-others="true" data-hover="dropdown" data-toggle="dropdown">
-                Pages <i class="fa fa-angle-down"></i>
+                No idea <i class="fa fa-angle-down"></i>
                 </a>
                 <ul class="dropdown-menu">
                     <li>

@@ -1,6 +1,6 @@
 @extends ('layouts.master')
 
-@section('title', 'Test 1')
+@section('title', '')
 
 @section('content')
     <p>Hello test</p>
