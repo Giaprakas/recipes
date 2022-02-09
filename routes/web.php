@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RecipeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +25,9 @@ Route::get('/recipes', function () {
 Route::get('/example', function () {
     return view('pages/example');
 });
+
+// Route::get('/categories', function () {
+//     return view('pages/categories');
+// });
+
+Route::get('/categories', [RecipeController::class,'showrecipes']);

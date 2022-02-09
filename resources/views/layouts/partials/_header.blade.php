@@ -380,11 +380,12 @@
 
     <!-- start: HORIZONTAL MENU -->
     <div class="horizontal-menu navbar-collapse collapse">
-        <ul class="nav navbar-nav"> 
-        <li class="active">
+        {!! $MyNavBar->asUl(['class' => 'nav navbar-nav'], ['class' => 'dropdown-menu']) !!}
+        <!-- <ul class="nav navbar-nav"> 
+            <li class="{{request()->is('/') ? 'active' : ''}}">
                 <a href="/">Home</a>
             </li>
-            <li>
+            <li class="{{request()->is('recipes') ? 'active' : ''}}">
                 <a href="/recipes" class="dropdown-toggle" data-close-others="true" data-hover="dropdown" data-toggle="dropdown">
                     <span class="selected"></span> Recipes <i class="fa fa-angle-down"></i>
                 </a>
@@ -461,7 +462,7 @@
                     </li>
                 </ul>
             </li>
-            <li>
+            <li class="{{request()->is('example') ? 'active' : ''}}">
                 <a href="\example">example menu</a>
             </li>
             <li>
@@ -502,7 +503,7 @@
                     </li>
                 </ul>
             </li>
-        </ul>
+        </ul> -->
     </div>
     <!-- end: HORIZONTAL MENU -->
 </div>
