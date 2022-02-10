@@ -40,19 +40,20 @@
         <footer>
             @include('layouts.partials._footer')
         </footer>  
-        
 
+
+        @yield('modal-forms')
         <!-- start: MAIN JAVASCRIPTS -->
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> -->
+        <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
         <!--[if lt IE 9]>
             <script src="assets/components/respond/dest/respond.min.js"></script>
             <script src="assets/components/Flot/excanvas.min.js"></script>
             <script src="assets/components/jquery-1.x/dist/jquery.min.js"></script>
             <![endif]-->
         <!--[if gte IE 9]><!-->
-        <script type="text/javascript" src="{{ asset('assets/componentsjquery/dist/jquery.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/components/jquery/dist/jquery.min.js') }}"></script>
         <!--<![endif]-->
         <script type="text/javascript" src="{{ asset('assets/components/jquery-ui/jquery-ui.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
@@ -64,6 +65,8 @@
         <script type="text/javascript" src="{{ asset('assets/components/sweetalert/dist/sweetalert.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/js/min/main.min.js') }}"></script>
         <!-- end: MAIN JAVASCRIPTS -->
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+        @yield('js-scripts')
     </body>
-
 </html>

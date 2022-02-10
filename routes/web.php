@@ -30,4 +30,7 @@ Route::get('/example', function () {
 //     return view('pages/categories');
 // });
 
-Route::get('/categories', [RecipeController::class,'showrecipes']);
+Route::get('/categories', [RecipeController::class,'show']);
+Route::get('/categories/{id}', [RecipeController::class,'showbyid']);
+// Route::get('/categories/{id}/edit', [RecipeController::class,'edit']);
+// Route::post('/categories/{id}', [RecipeController::class,'update']);
