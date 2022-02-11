@@ -18,19 +18,18 @@ Route::get('/', function () {
     return view('pages/home');
 });
 
-Route::get('/recipes', function () {
+Route::get('recipes', function () {
     return view('pages/recipes');
 });
 
-Route::get('/example', function () {
+Route::get('example', function () {
     return view('pages/example');
 });
 
-// Route::get('/categories', function () {
-//     return view('pages/categories');
-// });
+Route::get('category/all', [RecipeController::class,'show']);
 
-Route::get('/categories', [RecipeController::class,'show']);
-Route::get('/categories/{id}', [RecipeController::class,'showbyid']);
-// Route::get('/categories/{id}/edit', [RecipeController::class,'edit']);
-// Route::post('/categories/{id}', [RecipeController::class,'update']);
+// Route::get('/category/{category}', [RecipeController::class,'showbycategory']);
+
+
+Route::post('category/insert', [RecipeController::class,'insert'])->name('category.insert');
+Route::post('category/update,{recipe}', [RecipeController::class,'update'])->name('category.update');

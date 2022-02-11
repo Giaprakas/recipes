@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Recipe;
+use App\Models\Category;
+use DB;
 
 class RecipeController extends Controller
 {
@@ -11,24 +13,34 @@ class RecipeController extends Controller
     public function show()
     {
         $recipes = Recipe::all();
-        return view('pages.categories', compact('recipes'));
+        return view('pages.category', compact('recipes'));
     }
 
-    public function showbyid($slug)
+    public function insert(Request $request)
     {
-        $recipes = Recipe::findorfail($slug);
-        return view('pages.categories', compact('recipes'));
+        $recipe = new Recipe;
+        $recipe->title = request('title');
+        $recipe->category_id = request('category_id');
+        $recipe->body = request('body');
+        $recipe->save();
+        return back();
     }
 
-    public function edit()
+    public function update(Request $request, Recipe $recipe)
     {
-        $recipes = Recipe::all();
-        return view('pages.categories', compact('recipes'));
+        dd($recipe);
+        // dd($request)->all();
+        $recipe->title = request('title');
+        $recipe->category_id = request('category_id');
+        $recipe->body = request('body');
+        $recipe->save();
+        return back();
     }
 
-    public function update()
+    public function delete(Recipe $recipe)
     {
-        $recipes = Recipe::all();
-        return view('pages.categories', compact('recipes'));
+        // $recipe = Recipe::find($id);
+        $recipe->delete();
+        return back();
     }
 }

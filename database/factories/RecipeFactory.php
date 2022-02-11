@@ -14,9 +14,8 @@ class RecipeFactory extends Factory
     public function definition()
     {
         return [
-            // 'id' => $this->faker->unique()->randomNumber($nbDigits = NULL, $strict = false),
             'title' => $this->faker->word(),
-            'category' => $this->faker->randomElement(['spagheti','meats','salads']),
+            'category_id' => $this->faker->randomElement(['1','2','3']),
             'body' => $this->faker->paragraph(),
             'user_id' => $this->faker->numberBetween($min = 1, $max = 100),
         ];

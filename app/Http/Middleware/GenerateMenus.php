@@ -20,11 +20,11 @@ class GenerateMenus
                     'data-toggle' => 'dropdown' ,
                     'data-hover' => 'dropdown' ,
                     'data-close-others' => 'true',]);
-                $menu->recipes->add('Meat','example');
-                $menu->recipes->add('Salads','recipes');
+                $menu->recipes->add('Meat','categorybyid');
+                $menu->recipes->add('Salads','categorybyid');
                 $recipesSubs = $menu->recipes->all();
             $menu->add('Contact', 'contact');
-            $menu->add('Kατηγορίες', 'categories');
+            $menu->add('Kατηγορίες', 'category/all');
             });
         return $next($request);
     }
