@@ -19,9 +19,9 @@ Route::get('/', function () {
     return view('pages/home');
 });
 
-Route::get('recipes', function () {
-    return view('pages/recipes');
-});
+// Route::get('recipes', function () {
+//     return view('pages/recipes');
+// });
 
 Route::get('example', function () {
     return view('pages/example');
