@@ -13,7 +13,8 @@ class RecipeController extends Controller
     public function show()
     {
         $recipes = Recipe::all();
-        return view('pages.category', compact('recipes'));
+        $categories = Category::all();
+        return view('pages.category', compact('recipes', 'categories'));
     }
 
     public function insert(Request $request)
@@ -28,8 +29,7 @@ class RecipeController extends Controller
 
     public function update(Request $request, Recipe $recipe)
     {
-        dd($recipe);
-        // dd($request)->all();
+        dd($request->all());
         $recipe->title = request('title');
         $recipe->category_id = request('category_id');
         $recipe->body = request('body');
@@ -37,9 +37,9 @@ class RecipeController extends Controller
         return back();
     }
 
-    public function delete(Recipe $recipe)
+    public function delete(Request $request, Recipe $recipe)
     {
-        // $recipe = Recipe::find($id);
+        dd($recipe);
         $recipe->delete();
         return back();
     }
