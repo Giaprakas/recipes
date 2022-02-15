@@ -19,20 +19,18 @@ Route::get('/', function () {
     return view('pages/home');
 });
 
-// Route::get('recipes', function () {
-//     return view('pages/recipes');
-// });
-
 Route::get('example', function () {
     return view('pages/example');
 });
 
+// RECIPE
 Route::get('category/all', [RecipeController::class,'show']);
-Route::get('recipes/all', [CategoryController::class,'show']);
-
-// Route::get('/category/{category}', [RecipeController::class,'showbycategory']);
-
-
 Route::post('category/insert', [RecipeController::class,'insert'])->name('category.insert');
-Route::post('category/update,{recipe}', [RecipeController::class,'update'])->name('category.update');
-Route::post('category/delete,{recipe}', [RecipeController::class,'delete'])->name('category.delete');
+Route::patch('category/update,{recipe}', [RecipeController::class,'update'])->name('category.update');
+Route::delete('category/delete,{recipe}', [RecipeController::class,'delete'])->name('category.delete');
+
+// CATEGORY
+Route::get('recipes/all', [CategoryController::class,'show']);
+Route::post('recipe/insert', [CategoryController::class,'insert'])->name('recipe.insert');
+Route::patch('recipe/update,{category}', [CategoryController::class,'update'])->name('recipe.update');
+Route::delete('recipe/delete/{category}', [CategoryController::class,'delete'])->name('recipe.delete');

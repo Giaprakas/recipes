@@ -51,9 +51,8 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div><h5>Title:</h5><input id="title" type="" name="title" value=""/></div>
-                    <div><input id="category_id" type="" name="category_id" value=""></div>
-                    <div><h5>Description:</h5><input id="body" type="" name="body" value=""/></div>
+                    <div><h5>Id:</h5><input id="id" type="" name="id" value=""/></div>
+                    <div><h5>Category:</h5><input id="name" type="" name="name" value=""/></div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

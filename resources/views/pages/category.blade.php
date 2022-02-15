@@ -16,7 +16,7 @@
                     <th></th>
                 </tr> 
                 @foreach($recipes as $recipe)    
-                    <tr data-toggle="modal" data-target="#recipeModal" data-recipe="{{$recipe}}" data-form-url="{{route('category.update', $recipe) }}">
+                    <tr>
                         <div>
                             <td>{{$recipe->id}}</td>
                             <td>{{$recipe->title}}</td>
@@ -80,7 +80,7 @@
             <div class="modal-content">
                 <div class="modal-header"></div>
                 <div class="modal-body">
-                    Are you sure you want to delete <span id="modal-category_name"></span>?
+                    Are you sure you want to delete: <span></span> ?
                     <input type="hidden" id="category" name="category_id">
                 </div>
                 <div class="modal-footer">
@@ -92,6 +92,8 @@
     </div>
 </div>
 @endsection
+
+@yield('modals')
  
 @section('js-scripts')
 
@@ -123,7 +125,9 @@
 
     $(document).on('show.bs.modal', '#deleterecipe', function(e){
         var formUrl = $(e.relatedTarget).data('form-url');
+        var recipe = $(e.relatedTarget).data('recipe');
         $(e.currentTarget).find("#deleterecipeForm").attr('action',formUrl);
+        $(e.currentTarget).find(".modal-body span").text(recipe.title);
     });
 </script>
 @endsection
