@@ -33,42 +33,57 @@
 <!-- ////////////////////////// -->
 <div class="modal fade" id="newPopUpModal" tabindex="-1" role="dialog" aria-labelledby="newPopUpLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
-        <form id="categoryModalForm" method="post" data-toggle="validator">
+        <form action="#" id="categoryModalForm" novalidate="novalidate">
             @csrf
             <div class="modal-content">
                 <div class="modal-header border border-top-right-left-0">
                     <h2 class="container pt-3">Υποπροϊόντος</h2>
+                    <div class="errorHandler alert alert-danger no-display" style="display:block;">
+                        <i class="fa fa-times-sign"></i>
+                        " Υπάρχουν λάθη στη φόρμα. Παρακαλώ ελέξτε τα στοιχεία παρακάτω "
+                    </div>
+                    <div class="successHandler alert alert-success no-display" style="display:none;">
+                        <i class="fa fa-ok"></i>
+                        " Όλα καλά "
+                    </div>
                 </div>
                 <div class="modal-body">
                     <div class="row pt-1">
+                        <!-- error -->
                         <div class="col-sm-6 form-group">
-                            <label class="control-label" for="proion">Προϊόν/Εργασία</label>
-                            <input id="proion" type="text" class="form-control input-sm" required="true" data-minlength="1">
+                            <label class="control-label" for="proion">Προϊόν/Εργασία 
+                                <span class="symbol required" aria-required="true"></span>
+                            </label>
+                            <input id="proion" type="text" class="form-control input-sm validate" aria-required="true" aria-describedby="proion-error" aria-invalid>
+                            <span id="proion-error" class="help-block"></span>
                         </div>
-                        <div class="col-sm-2">
-                            <label for="monada_metrisis">Μον.Μέτρησης</label>
-                            <select class="form-control input-sm" id="monada_metrisis">
-                                <option style="display:none;" value="selected hidden">Τεμάχια</option>     
+                        <div class="col-sm-2 form-group">
+                            <label class="control-label"for="monada_metrisis">Μον.Μέτρησης <span class="symbol required" aria-required="true"></span></label>
+                            <select class="form-control input-sm validate" id="monada_metrisis">   
+                            <!-- <option style="display:none;" value="selected hidden" id="monada_metrisis">Τεμάχια</option>  -->
+                                <option value>&nbsp;</option>
                                 <option>1</option>
                                 <option>2</option>
                                 <option>3</option>
                                 <option>4</option>
                             </select>
                         </div>
-                        <div class="col-sm-2">
-                            <label for="logist">Λογιστ.Χαρ/σμός</label>
-                            <select class="form-control input-sm">
-                                <option style="display:none;" value="selected hidden" id="logist">Εμπόρευμα</option>     
+                        <div class="col-sm-2 form-group">
+                            <label class="control-label" for="logist">Λογιστ.Χαρ/σμός <span class="symbol required" aria-required="true"></span></label>
+                            <select class="form-control input-sm validate">
+                                <!-- <option style="display:none;" value="selected hidden" id="logist">Εμπόρευμα</option>      -->
+                                <option value>&nbsp;</option>
                                 <option>1</option>
                                 <option>2</option>
                                 <option>3</option>
                                 <option>4</option>
                             </select>
                         </div>
-                        <div class="col-sm-2">
-                            <label>Φ.Π.Α</label>    
-                            <select for="fpa" class="form-control input-sm">
-                                <option style="display:none;" value="selected hidden" id="fpa">24.00% - Φ.Π.Α</option>    
+                        <div class="col-sm-2 form-group">
+                            <label class="control-label">Φ.Π.Α <span class="symbol required" aria-required="true"></span></label>    
+                            <select for="fpa" class="form-control input-sm validate">
+                                <!-- <option style="display:none;" value="selected hidden" id="fpa">24.00% - Φ.Π.Α</option>     -->
+                                <option>&nbsp;</option>
                                 <option>1</option>
                                 <option>2</option>
                                 <option>3</option>
@@ -80,25 +95,34 @@
                     <div class="row pt-1">
                         <div class="col-sm-2">
                             <label for="timi_agoras">Τιμή Αγοράς</label>
-                            <input id="timi_agoras" type="text" class="form-control input-sm">
+                            <div class="input-group">
+                                <input id="timi_agoras" type="text" class="form-control input-sm">
+                                <span class="input-group-addon">€</span>
+                            </div>
+                            
                         </div> 
                         <div class="col-sm-2">
                             <label for="posoto_kerdous">Ποσοστό Κέρδους</label>
-                            <input id="posoto_kerdous" type="text" class="form-control input-sm">
+                            <div class="input-group">
+                                <input id="posoto_kerdous" type="text" class="form-control input-sm">
+                                <span class="input-group-addon">%</span>
+                            </div>
+                            
                         </div> 
                         <div class="col-sm-2">
                             <label for="timi_polisis">Τιμή Πώλησης</label>
-                            <input id="timi_polisis" type="text" class="form-control input-sm">
+                            <div class="input-group">
+                                <input id="timi_polisis" type="text" class="form-control input-sm">
+                                <span class="input-group-addon">€</span>
+                            </div>
+                            
                         </div>
                         <div class="col-sm-2">
                             <label for="timi_lianikis">Τιμή Λιανικής</label>
                             <div class="input-group">
-                                <div class="input-group-append">
-                                    <span class="input-group-text" id="basic-addon1">€</span>
-                                </div>
                                 <input id="timi_lianikis" type="text" class="form-control input-sm">
+                                <span class="input-group-addon">€</span>
                             </div>
-                            <!-- <input id="timi_lianikis" type="text" class="form-control input-sm"> -->
                         </div> 
                     </div>
                     &nbsp;
@@ -188,5 +212,42 @@
         $(this).find('.modal-body span').text(category.name).end();
         $(this).find('.modal-header').html('<strong style="color:white;">Delete Category</strong>').end();
     });
+
+
+    ///////////////////////
+    // Validation script //
+    ///////////////////////
+    $(document).on('show.bs.modal' , '#newPopUpModal' , function(e){
+        $(this)
+            .find('.form-group').removeClass('has-success has-error').end()
+            .find('.control-label span').removeClass('ok').addClass('required').end()
+            .find('input').attr('aria-invalid',false).val('').end()
+            .find('.form-group span').removeClass('valid').text('').end();
+        $(this).find('.modal-footer .btn-success').prop('disabled',true); 
+    });
+
+    $(document).on('keyup change' , '.validate' , function(e){
+        var $modal = $(this).parents('.modal-content');
+        var flag = false;
+        if (!$(this).val()){ // empty or null input #proion
+            $(this).parent().removeClass('has-success').addClass('has-error');
+            $(this).parent().find('span:first').removeClass('ok').addClass('required');
+            $(this).parent().find('span:last').removeClass('valid');
+            $(this).parent().attr('aria-invalid',true);
+        }
+        else{
+            $(this).parent().removeClass('has-error').addClass('has-success');
+            $(this).parent().find('span:first').removeClass('required').addClass('ok');
+            $(this).parent().children('span').addClass('valid').text('');
+            $(this).attr('aria-invalid',false);
+        }
+
+        $('.validate').each(function(){
+            if ($(this).val().length == 0) {
+               flag = true;
+            }
+        });
+        $modal.find('.modal-footer .btn-success').prop('disabled',flag);    
+});
 </script>
 @endsection
