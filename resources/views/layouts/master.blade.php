@@ -66,7 +66,7 @@
         <script type="text/javascript" src="{{ asset('assets/js/min/main.min.js') }}"></script>
         <!-- end: MAIN JAVASCRIPTS -->
         <!-- Latest compiled and minified JavaScript -->
-        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+        <!-- <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script> -->
         @yield('js-scripts')
     </body>
 </html>

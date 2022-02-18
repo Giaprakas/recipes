@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,3 +35,7 @@ Route::get('recipes/all', [CategoryController::class,'show']);
 Route::post('recipe/insert', [CategoryController::class,'insert'])->name('recipe.insert');
 Route::patch('recipe/update,{category}', [CategoryController::class,'update'])->name('recipe.update');
 Route::delete('recipe/delete/{category}', [CategoryController::class,'delete'])->name('recipe.delete');
+
+// PRODUCTS
+Route::get('products/all', [ProductController::class,'show']);
+Route::post('products/insert', [ProductController::class,'insert'])->name('product.insert');

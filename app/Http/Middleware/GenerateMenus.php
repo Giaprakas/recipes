@@ -13,6 +13,7 @@ class GenerateMenus
             $menu->add('Home');
             $menu->add('About', 'example');
             $menu->add('Kατηγορίες', 'recipes/all');
+            $menu->add('Προϊόντα', 'products/all');
                 // ->append('<i class="fa fa-angle-down"></i>')
                 // ->prepend('<span class="selected"></span>')
                 // ->link->attr([
