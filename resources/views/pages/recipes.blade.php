@@ -1,253 +1,39 @@
 @extends ('layouts.master')
 
-@section('title', 'Κατηγορίες')
+@section ('title', "Συνταγές")
 
-@section('content')
-<div class="row">
-    <div class="col-md-8 col-md-offset-2">
-    <button type="button" class="btn btn-primary" title="New" style="margin:10px 0px;" data-toggle="modal" data-target="#categoryModal" data-form-url="{{route('recipe.insert')}}"><i class="fa fa-plus"></i></button>
-        <table class="table table-hover">
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Ενέργειες</th>
-            </tr>
-            @foreach ($categories as $category)
-            <tr>
-                <td>{{$category->id}}</td>
-                <td>{{$category->name}}</td>
-                <td>
-                    <button type="button" class="btn btn-warning btn-sm" title="Edit" data-toggle="modal" data-target="#newPopUpModal" data-category="{{$category}}" data-form-url="{{route('recipe.update', $category)}}"><i class="fa fa-edit"></i></button>
-                    <button type="button" class="btn btn-danger btn-sm" title="Delete" data-toggle="modal" data-target="#deleteCategory" data-category="{{$category}}"data-form-url="{{route('recipe.delete', $category)}}"><i class="fa fa-trash"></i></button>
-                </td>
-            </tr>   
-            @endforeach
-        </table>
+@section ('content')
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <button type="button" class="btn btn-primary" style="color:white;" data-toggle="modal" data-target="#recipeModal" data-form-url="{{route('recipe.insert')}}"><i class="fa fa-plus"></i></button>    
+            <div></br></div>
+            <table class="table table-hover">    
+                <tr>
+                    <!-- <th>Id</th> -->
+                    <th>Τίτλος</th>
+                    <th>Κατηγορία</th>
+                    <th>Συστατικά</th>
+                    <th>Περιγραφή</th>
+                    <th>Ενέργειες</th>
+                </tr> 
+                @foreach($recipes as $recipe)    
+                    <tr>
+                        <!-- <td>{{$recipe->id}}</td> -->
+                        <td>{{$recipe->title}}</td>
+                        <td><a href="/category/{{$recipe->category->id}}">{{$recipe->category->name}}</a></td>
+                        <td>
+                            @foreach ($recipe->ingredients as $ingredient)
+                                <span class="label label-info">{{$ingredient->name}}: {{$ingredient->pivot->amount}}</span>
+                            @endforeach
+                        </td>
+                        <td>{{$recipe->body}}</td>
+                        <td>
+                            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#recipeModal" data-recipe="{{$recipe}}" data-ingredients="{{$recipe->ingredients}}" data-form-url="{{route('recipe.update', $recipe) }}"><i class="fa fa-edit"></i></button>
+                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleterecipe" data-recipe="{{$recipe}}" data-ingredients="{{$recipe->ingredients}}" data-form-url="{{route('recipe.delete', $recipe) }}"><i class="fa fa-trash"></i></button>
+                        </td>
+                    </tr>
+                @endforeach
+            </table>
+        </div>
     </div>
-</div>
-@endsection
-
-@section ('modal-forms')
-<!-- ////////////////////////// -->
-<!-- ////// NewPOPUP MODAL ////// -->
-<!-- ////////////////////////// -->
-<div class="modal fade" id="newPopUpModal" tabindex="-1" role="dialog" aria-labelledby="newPopUpLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <form action="#" id="categoryModalForm" novalidate="novalidate">
-            @csrf
-            <div class="modal-content">
-                <div class="modal-header border border-top-right-left-0">
-                    <h2 class="container pt-3">Υποπροϊόντος</h2>
-                    <div class="errorHandler alert alert-danger no-display" style="display:block;">
-                        <i class="fa fa-times-sign"></i>
-                        " Υπάρχουν λάθη στη φόρμα. Παρακαλώ ελέξτε τα στοιχεία παρακάτω "
-                    </div>
-                    <div class="successHandler alert alert-success no-display" style="display:none;">
-                        <i class="fa fa-ok"></i>
-                        " Όλα καλά "
-                    </div>
-                </div>
-                <div class="modal-body">
-                    <div class="row pt-1">
-                        <!-- error -->
-                        <div class="col-sm-6 form-group">
-                            <label class="control-label" for="proion">Προϊόν/Εργασία 
-                                <span class="symbol required" aria-required="true"></span>
-                            </label>
-                            <input id="proion" type="text" class="form-control input-sm validate" aria-required="true" aria-describedby="proion-error" aria-invalid>
-                            <span id="proion-error" class="help-block"></span>
-                        </div>
-                        <div class="col-sm-2 form-group">
-                            <label class="control-label"for="monada_metrisis">Μον.Μέτρησης <span class="symbol required" aria-required="true"></span></label>
-                            <select class="form-control input-sm validate" id="monada_metrisis">   
-                            <!-- <option style="display:none;" value="selected hidden" id="monada_metrisis">Τεμάχια</option>  -->
-                                <option value>&nbsp;</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                            </select>
-                        </div>
-                        <div class="col-sm-2 form-group">
-                            <label class="control-label" for="logist">Λογιστ.Χαρ/σμός <span class="symbol required" aria-required="true"></span></label>
-                            <select class="form-control input-sm validate">
-                                <!-- <option style="display:none;" value="selected hidden" id="logist">Εμπόρευμα</option>      -->
-                                <option value>&nbsp;</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                            </select>
-                        </div>
-                        <div class="col-sm-2 form-group">
-                            <label class="control-label">Φ.Π.Α <span class="symbol required" aria-required="true"></span></label>    
-                            <select for="fpa" class="form-control input-sm validate">
-                                <!-- <option style="display:none;" value="selected hidden" id="fpa">24.00% - Φ.Π.Α</option>     -->
-                                <option>&nbsp;</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                            </select>
-                        </div> 
-                    </div>
-                    &nbsp;
-                    <div class="row pt-1">
-                        <div class="col-sm-2">
-                            <label for="timi_agoras">Τιμή Αγοράς</label>
-                            <div class="input-group">
-                                <input id="timi_agoras" type="text" class="form-control input-sm">
-                                <span class="input-group-addon">€</span>
-                            </div>
-                            
-                        </div> 
-                        <div class="col-sm-2">
-                            <label for="posoto_kerdous">Ποσοστό Κέρδους</label>
-                            <div class="input-group">
-                                <input id="posoto_kerdous" type="text" class="form-control input-sm">
-                                <span class="input-group-addon">%</span>
-                            </div>
-                            
-                        </div> 
-                        <div class="col-sm-2">
-                            <label for="timi_polisis">Τιμή Πώλησης</label>
-                            <div class="input-group">
-                                <input id="timi_polisis" type="text" class="form-control input-sm">
-                                <span class="input-group-addon">€</span>
-                            </div>
-                            
-                        </div>
-                        <div class="col-sm-2">
-                            <label for="timi_lianikis">Τιμή Λιανικής</label>
-                            <div class="input-group">
-                                <input id="timi_lianikis" type="text" class="form-control input-sm">
-                                <span class="input-group-addon">€</span>
-                            </div>
-                        </div> 
-                    </div>
-                    &nbsp;
-                    <div class="row pt-1">
-                        <div class="col-sm-10">
-                            <label>Περιγραφή προϊόντος</label>
-                            <textarea class="form-control input-sm" rows="4" id="comment"></textarea>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer" style="padding:5px;">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Κλείσιμο</button>
-                    <button type="submit" class="btn btn-success">Αποθήκευση</button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-
-<!-- ////////////////////////// -->
-<!-- ////// CATEGORY MODAL ////// -->
-<!-- ////////////////////////// -->
-<div class="modal fade" id="categoryModal" tabindex="-1" role="dialog" aria-labelledby="categoryLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered " role="document">
-        <form id="categoryModalForm" method="post" class="form-group">
-            @csrf
-                <div class="modal-content">
-                <div class="modal-header bg-primary" id="categoryLabel"></div>
-                <div class="modal-body">
-                    <div><h5>Category:</h5><input id="name" type="" name="name" value=""/></div>
-                </div>
-                <div class="modal-footer" style="padding:5px;">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Κλείσιμο</button>
-                    <button type="submit" class="btn btn-success">Αποθήκευση</button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-
-<!-- ////////////////////////// -->
-<!-- ////// DELETE MODAL ////// -->
-<!-- ////////////////////////// -->
-<div class="modal fade" id="deleteCategory" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="deletecategory" aria-hidden="true">
-    <div class="modal-dialog modal-sm" role="document">
-        <form id="deleteCategoryForm" method="post" class="form-group">
-            @csrf
-            <div class="modal-content">
-                <div class="modal-header" style="background-color:#d9534f;" id="categoryLabel"></div>
-                <div class="modal-body" id="deletemodalbody">
-                    Are you sure you want to delete: <span></span> ?
-                </div>
-                <div class="modal-footer" style="padding:5px;">
-                    <button type="button" class="btn" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-@endsection
-
-@section('js-scripts')
-<script>
-    $(document).on('show.bs.modal', '#categoryModal', function(e){
-        var formUrl = $(e.relatedTarget).data('form-url');
-        var category = $(e.relatedTarget).data('category');
-        $(this).find('#categoryModalForm').attr('action',formUrl);
-        if (category)
-        {
-            $(this).find('.modal-body input').val(category.name).end();
-            $(this).find('#categoryModalForm').prepend('<input type="hidden" name="_method" value="PATCH">').end();
-            $(this).find('.modal-header').html('<strong style="white;">Edit Recipe</strong>').end();
-        }
-        else
-        {
-            $(this).find('#categoryModalForm').prepend('<input type="hidden" name="_method" value="POST">').end();
-            $(this).find('.modal-header').html('<strong style="white;">New Recipe</strong>').end();
-        }
-    });
-
-    $(document).on('show.bs.modal', '#deleteCategory', function(e){
-        var formUrl = $(e.relatedTarget).data('form-url');
-        var category = $(e.relatedTarget).data('category');
-        $(this).find("#deleteCategoryForm").attr('action',formUrl).end();
-        $(this).find('#deleteCategoryForm').prepend('<input type="hidden" name="_method" value="DELETE">').end();
-        $(this).find('.modal-body span').text(category.name).end();
-        $(this).find('.modal-header').html('<strong style="color:white;">Delete Category</strong>').end();
-    });
-
-
-    ///////////////////////
-    // Validation script //
-    ///////////////////////
-    $(document).on('show.bs.modal' , '#newPopUpModal' , function(e){
-        $(this)
-            .find('.form-group').removeClass('has-success has-error').end()
-            .find('.control-label span').removeClass('ok').addClass('required').end()
-            .find('input').attr('aria-invalid',false).val('').end()
-            .find('.form-group span').removeClass('valid').text('').end();
-        $(this).find('.modal-footer .btn-success').prop('disabled',true); 
-    });
-
-    $(document).on('keyup change' , '.validate' , function(e){
-        var $modal = $(this).parents('.modal-content');
-        var flag = false;
-        if (!$(this).val()){ // empty or null input #proion
-            $(this).parent().removeClass('has-success').addClass('has-error');
-            $(this).parent().find('span:first').removeClass('ok').addClass('required');
-            $(this).parent().find('span:last').removeClass('valid');
-            $(this).parent().attr('aria-invalid',true);
-        }
-        else{
-            $(this).parent().removeClass('has-error').addClass('has-success');
-            $(this).parent().find('span:first').removeClass('required').addClass('ok');
-            $(this).parent().children('span').addClass('valid').text('');
-            $(this).attr('aria-invalid',false);
-        }
-
-        $('.validate').each(function(){
-            if ($(this).val().length == 0) {
-               flag = true;
-            }
-        });
-        $modal.find('.modal-footer .btn-success').prop('disabled',flag);    
-});
-</script>
 @endsection

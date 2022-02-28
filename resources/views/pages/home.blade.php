@@ -5,5 +5,3 @@
 @section('content')
     <p>Hello test</p>
 @endsection
-
-

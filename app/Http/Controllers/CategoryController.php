@@ -11,7 +11,14 @@ class CategoryController extends Controller
     public function show()
     {
         $categories = Category::all();
-        return view('pages.recipes', compact('categories'));
+        return view('pages.category', compact('categories'));
+    }
+
+    
+    public function showbyid(Category $category)
+    {
+        $category->load(['recipes']); //loads the recipes of this category at calling and not later on foreach 
+        return view('pages.categorybyid', compact('category'));
     }
 
     public function insert(Request $request)

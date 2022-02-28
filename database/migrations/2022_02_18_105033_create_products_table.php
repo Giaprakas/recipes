@@ -19,11 +19,11 @@ class CreateProductsTable extends Migration
             $table->integer('quantity');
             $table->integer('accounting_type');
             $table->integer('tax');
-            $table->float('buying_price',8,2);
-            $table->integer('gain_rate');
-            $table->float('selling_price',8,2);
-            $table->float('retail_price',8,2);
-            $table->text('description');
+            $table->float('buying_price',8,2)->nullable();
+            $table->integer('gain_rate')->nullable();
+            $table->float('selling_price',8,2)->nullable();
+            $table->float('retail_price',8,2)->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

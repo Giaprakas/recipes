@@ -11,9 +11,11 @@ class GenerateMenus
     {
         \Menu::make('MyNavBar', function ($menu) {
             $menu->add('Home');
-            $menu->add('About', 'example');
-            $menu->add('Kατηγορίες', 'recipes/all');
-            $menu->add('Προϊόντα', 'products/all');
+            // $menu->add('About', 'example');
+            $menu->add('Συνταγές', 'recipes/');
+            $menu->add('Kατηγορίες', 'category/');
+            $menu->add('Συστατικά', 'ingredients/');
+            // $menu->add('Προϊόντα', 'products/');
                 // ->append('<i class="fa fa-angle-down"></i>')
                 // ->prepend('<span class="selected"></span>')
                 // ->link->attr([
@@ -24,8 +26,8 @@ class GenerateMenus
                 // $menu->recipes->add('Meat','categorybyid');
                 // $menu->recipes->add('Salads','categorybyid');
                 // $recipesSubs = $menu->recipes->all();
-            $menu->add('Contact', 'contact');
-            $menu->add('Συνταγές', 'category/all');
+            // $menu->add('Contact', 'contact');
+            
             });
         return $next($request);
     }
